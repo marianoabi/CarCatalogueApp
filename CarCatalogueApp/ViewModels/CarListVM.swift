@@ -17,6 +17,7 @@ final class CarListVM {
             if let cars = carList {
                 self?.carList.value = cars
             } else {
+                self?.carList.value = nil
                 self?.error.value = "Failed to get Car List data."
             }
         }

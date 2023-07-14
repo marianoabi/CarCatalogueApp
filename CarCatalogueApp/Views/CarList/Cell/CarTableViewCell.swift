@@ -12,10 +12,7 @@ class CarTableViewCell: UITableViewCell {
     
     static let identifier = "CarTableViewCell"
     static let nib = "CarTableViewCell"
-    
-    var isExpanded = false
-    var bottomBorderHeight = 25
-    
+        
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var carName: UILabel!
     @IBOutlet weak var carPrice: UILabel!
@@ -34,30 +31,9 @@ extension CarTableViewCell {
         
     }
     
-    override func draw(_ rect: CGRect) {
-        if isLastCell() {
-            hideBottomBorder()
-        } else {
-            showBottomBorder()
-        }
-        
-        if let tableView = superview as? UITableView {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        isExpanded = selected
-
-        detailsView.isHidden = !isExpanded
-
-        if let tableView = superview as? UITableView {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
     }
 }
 
@@ -70,26 +46,5 @@ extension CarTableViewCell {
         carRating.text = car.getRating()
         prosLabel.text = car.getProList()
         consLabel.text = car.getConList()
-    }
-    
-    private func isLastCell() -> Bool {
-        if let tableView = superview as? UITableView {
-            let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
-            let indexPath = tableView.indexPath(for: self)
-            
-            if let indexPath = indexPath, indexPath.row == lastRowIndex {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    private func showBottomBorder() {
-        bottomBorder.isHidden = false
-    }
-    
-    private func hideBottomBorder() {
-        bottomBorder.isHidden = true
     }
 }
