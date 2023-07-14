@@ -10,10 +10,10 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        setupNavigationBar()
         return true
     }
 
@@ -32,5 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+// MARK: - Functionalities
+extension AppDelegate {
+    private func setupNavigationBar() {
+        
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            appearance.backgroundColor = .orange
+            let proxy = UINavigationBar.appearance()
+            proxy.tintColor = .white
+            proxy.standardAppearance = appearance
+            proxy.scrollEdgeAppearance = appearance
+        }
+    }
 }
 
