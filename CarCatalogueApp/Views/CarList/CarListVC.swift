@@ -20,6 +20,11 @@ class CarListVC: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        return rc
+    }()
 }
 
 // MARK: - Lifecycle
@@ -50,10 +55,13 @@ extension CarListVC {
         tableView.register(UINib(nibName: CarTableViewCell.nib, bundle: nil), forCellReuseIdentifier: CarTableViewCell.identifier)
         tableView.register(UINib(nibName: HeaderTableView.nib, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderTableView.identifier)
         
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
     private func getCarList() {
-        vm.getCarList()
+        refreshControl.beginRefreshing()
+        self.vm.getCarList()
     }
     
     private func setupBinders() {
@@ -66,6 +74,7 @@ extension CarListVC {
         }
         
         vm.carList.bind { [weak self] cars in
+            self?.refreshControl.endRefreshing()
             if let _ = cars {
                 self?.tableView.reloadData()
             }
@@ -85,6 +94,10 @@ extension CarListVC {
     private func expandFirstItemInList() {
         selectedIndexPath = IndexPath.init(row: 0, section: 0)
         tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .bottom)
+    }
+    
+    @objc func refreshData() {
+        getCarList()
     }
 }
 
