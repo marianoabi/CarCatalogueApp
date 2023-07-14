@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HeaderTableView" customModule="CarCatalogueApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="563" height="270"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tacoma.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="es5-nu-vzp">
+                    <rect key="frame" x="0.0" y="0.0" width="563" height="270"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get yours now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgn-ks-k82">
+                    <rect key="frame" x="20" y="229" width="523" height="21"/>
+                    <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raptor 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UR-zI-8Jc">
+                    <rect key="frame" x="20" y="187.33333333333334" width="523" height="36.666666666666657"/>
+                    <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mgn-ks-k82" secondAttribute="trailing" constant="20" id="7YO-wt-lVT"/>
+                <constraint firstItem="es5-nu-vzp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8Jo-0h-EWT"/>
+                <constraint firstItem="mgn-ks-k82" firstAttribute="leading" secondItem="9UR-zI-8Jc" secondAttribute="leading" id="Xn7-cn-PiZ"/>
+                <constraint firstAttribute="trailing" secondItem="es5-nu-vzp" secondAttribute="trailing" id="YI8-Wt-Lbn"/>
+                <constraint firstAttribute="bottom" secondItem="mgn-ks-k82" secondAttribute="bottom" constant="20" id="gKb-64-Yr1"/>
+                <constraint firstAttribute="bottom" secondItem="es5-nu-vzp" secondAttribute="bottom" id="iqP-TP-eO0"/>
+                <constraint firstItem="mgn-ks-k82" firstAttribute="trailing" secondItem="9UR-zI-8Jc" secondAttribute="trailing" id="kKG-n6-avG"/>
+                <constraint firstItem="mgn-ks-k82" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="lB1-n5-vXa"/>
+                <constraint firstItem="mgn-ks-k82" firstAttribute="top" secondItem="9UR-zI-8Jc" secondAttribute="bottom" constant="5" id="lrN-0B-MXa"/>
+                <constraint firstItem="es5-nu-vzp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="py2-Ps-Kf6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="featuredMessage" destination="mgn-ks-k82" id="fei-68-kVF"/>
+                <outlet property="featuredTitle" destination="9UR-zI-8Jc" id="oXa-vv-reC"/>
+            </connections>
+            <point key="canvasLocation" x="-241.98473282442748" y="-71.83098591549296"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Tacoma.jpg" width="5472" height="3648"/>
+    </resources>
+</document>
