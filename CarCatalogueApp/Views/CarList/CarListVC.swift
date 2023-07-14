@@ -65,10 +65,8 @@ extension CarListVC {
     
     private func setupBinders() {
         vm.error.bind { error in
-            if let error = error {
-                print(error)
-            } else {
-                
+            if let error = error, error != "" {
+                UIAlertController.showAlert(title: "Error", message: error, on: self)
             }
         }
         
@@ -95,7 +93,7 @@ extension CarListVC {
             selectedIndexPath = IndexPath.init(row: 0, section: 0)
             tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .bottom)
         } else {
-            print("No data.")
+            UIAlertController.showAlert(title: "Alert", message: "No data to display. Try refreshing the page.", on: self)
         }
     }
     
@@ -126,17 +124,10 @@ extension CarListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 270
         return 450
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell, inde {
-//            return UITableView.automaticDimension
-//        } else {
-//            return 155
-//        }
-        
         if selectedIndexPath == indexPath {
             return UITableView.automaticDimension
         }
