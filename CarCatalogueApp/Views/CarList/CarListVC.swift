@@ -34,7 +34,6 @@ extension CarListVC {
         
         setupViews()
         setupBinders()
-        getCarList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,8 +91,12 @@ extension CarListVC {
     }
     
     private func expandFirstItemInList() {
-        selectedIndexPath = IndexPath.init(row: 0, section: 0)
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .bottom)
+        if !isFiltering, let cars = vm.carList.value, cars.count > 0 {
+            selectedIndexPath = IndexPath.init(row: 0, section: 0)
+            tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .bottom)
+        } else {
+            print("No data.")
+        }
     }
     
     @objc func refreshData() {
