@@ -88,4 +88,18 @@ extension Car {
         
         return ratingToStar
     }
+    
+    func getProList() -> String {
+        guard let stringList = prosList else { return "" }
+        let listName = "Pros :"
+        let bulletPoints = stringList.map { "• \($0)" }.joined(separator: "\n")
+        return "\(listName)\n\(bulletPoints)"
+    }
+    
+    func getConList() -> String {
+        guard let stringList = consList else { return "" }
+        let listName = "Cons :"
+        let bulletPoints = stringList.map { "• \($0)" }.joined(separator: "\n")
+        return "\(listName)\n\(bulletPoints)"
+    }
 }

@@ -28,6 +28,7 @@ extension CarListVC {
         setupViews()
         setupBinders()
         getCarList()
+        expandFirstItemInList()
     }
 }
 
@@ -64,7 +65,7 @@ extension CarListVC {
         }
     }
     
-    func setupNavigationTitle(_ title: String) {
+    private func setupNavigationTitle(_ title: String) {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 360, height: 50))
         label.text = title
         label.textColor = .white
@@ -72,6 +73,11 @@ extension CarListVC {
         label.backgroundColor = UIColor.clear
         label.textAlignment = .left
         navigationItem.titleView = label
+    }
+    
+    private func expandFirstItemInList() {
+        let firstIndexPath = IndexPath(row: 0, section: 0)
+        tableView.selectRow(at: firstIndexPath, animated: true, scrollPosition: .none)
     }
 }
 
@@ -87,10 +93,6 @@ extension CarListVC: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 155
-    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderTableView.identifier)
@@ -101,11 +103,11 @@ extension CarListVC: UITableViewDelegate, UITableViewDataSource {
         return 270
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIViewController()
-        
-        if let nav = navigationController {
-            nav.pushViewController(vc, animated: true)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let cell = tableView.cellForRow(at: indexPath) as? CarTableViewCell, cell.isExpanded {
+            return UITableView.automaticDimension
+        } else {
+            return 155
         }
     }
 }

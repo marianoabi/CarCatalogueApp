@@ -13,11 +13,17 @@ class CarTableViewCell: UITableViewCell {
     static let identifier = "CarTableViewCell"
     static let nib = "CarTableViewCell"
     
+    var isExpanded = false
+    var bottomBorderHeight = 25
+    
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var carName: UILabel!
     @IBOutlet weak var carPrice: UILabel!
     @IBOutlet weak var carRating: UILabel!
     @IBOutlet weak var bottomBorder: UIView!
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var prosLabel: UILabel!
+    @IBOutlet weak var consLabel: UILabel!
 }
 
 // MARK: - Lifecycle, Overrides
@@ -34,10 +40,24 @@ extension CarTableViewCell {
         } else {
             showBottomBorder()
         }
+        
+        if let tableView = superview as? UITableView {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        isExpanded = selected
+
+        detailsView.isHidden = !isExpanded
+
+        if let tableView = superview as? UITableView {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
     }
 }
 
@@ -48,6 +68,8 @@ extension CarTableViewCell {
         carName.text = car.getMakeAndModel()
         carPrice.text = car.getPrice()
         carRating.text = car.getRating()
+        prosLabel.text = car.getProList()
+        consLabel.text = car.getConList()
     }
     
     private func isLastCell() -> Bool {

@@ -17,7 +17,7 @@ final class CarListAPI {
     
     func fetchCarListInLocalJSON(completion: @escaping([Car]?) -> Void) {
                 
-        if let url = Bundle.main.url(forResource: Constants.jsonFileName, withExtension: Constants.fileType) {
+        if let url = Bundle.main.url(forResource: Constants.testJson, withExtension: Constants.fileType) {
             do {
                 let data = try Data(contentsOf: url)
                 let jsonData = try JSONDecoder().decode([Car].self, from: data)
